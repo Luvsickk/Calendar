@@ -73,7 +73,8 @@ fun Day(day: CalendarDay, isSelected: Boolean, onClick: (CalendarDay) -> Unit) {
 fun DaysOfWeekTitle(daysOfWeek: List<DayOfWeek>) {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .padding(top = 36.dp)
+        .height(50.dp)
+        .shadow(6.dp)
         .background(Color(0xFFB0AFAD))
 
     ){
