@@ -1,5 +1,8 @@
 package com.cutieprogramteam.calendar
 
+import android.content.Intent
+import androidx.compose.material3.MaterialTheme
+import android.os.Bundle
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
@@ -34,15 +37,38 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
+import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.ui.platform.ComposeView
+import androidx.core.content.ContextCompat
 
+class CalendarActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.calendarlayout)
 
+        val composeView: ComposeView = findViewById(R.id.composeCalendar)
+
+        composeView.setContent {
+            MaterialTheme {
+                Calendar()
+            }
+        }
+    }
+}
 @Composable
 fun Day(day: CalendarDay, isSelected: Boolean, onClick: (CalendarDay) -> Unit) {
     Box(
         modifier = Modifier
-            .background(color = when{ isSelected -> Color(0xFF00FF00) else -> Color.Transparent },
-                shape = CircleShape)
-            .clickable(enabled = day.position == DayPosition.MonthDate) {onClick(day)}
+            .background(
+                color = when {
+                    isSelected -> Color(0xFF00FF00)
+                    else -> Color.Transparent
+                },
+                shape = CircleShape
+            )
+            .clickable(enabled = day.position == DayPosition.MonthDate) { onClick(day) }
             .aspectRatio(1f),
 
         contentAlignment = Alignment.Center

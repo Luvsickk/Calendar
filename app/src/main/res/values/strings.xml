@@ -5,5 +5,16 @@
     <string name="btn2">btn 2</string>
     <string name="btn3">btn 3</string>
     <string name="btn4">btn 4</string>
+    <string name="text2"> Calendar of Activities</string>
+    <string name="text3">Enter Subject/Task name</string>
+    <string name="text4">Add</string>
+    <string name="text5">Rename</string>
+    <string name="text6">Remove</string>
+    <string name="text7">Task/Schedule for Selected Day:</string>
+    <string name="text8">placeholder</string>
+    <string name="text9">placeholder</string>
+    <string name="text10">placeholder</string>
+    <string name="text11">placeholder</string>
+
 
 </resources>
