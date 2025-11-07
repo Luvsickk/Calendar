@@ -1,6 +1,6 @@
 package com.cutieprogramteam.calendar
 
-import android.content.Intent
+
 import androidx.compose.material3.MaterialTheme
 import android.os.Bundle
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,7 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.platform.ComposeView
-import androidx.core.content.ContextCompat
+
 
 class CalendarActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -24,9 +24,41 @@ class MainActivity : ComponentActivity() {
             navigateToScreenOne()
         }
         setContentView(binding.root)
+
+        binding.btn2.setOnClickListener {
+            navigateToScreenTwo()
+        }
+        setContentView(binding.root)
+
+        binding.btn3.setOnClickListener {
+            navigateToScreenThree()
+        }
+        setContentView(binding.root)
+
+        binding.btn4.setOnClickListener {
+            navigateToScreenFour()
+        }
+        setContentView(binding.root)
+
+
     }
     private fun navigateToScreenOne() {
         val intent = Intent(this,CalendarActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToScreenTwo() {
+        val intent = Intent(this, PomodoroActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToScreenThree() {
+        val intent = Intent(this, Jude::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToScreenFour() {
+        val intent = Intent(this, TodolistActivity::class.java)
         startActivity(intent)
     }
 

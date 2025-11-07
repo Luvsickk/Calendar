@@ -14,7 +14,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Calendar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +21,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    <activity android:name=".CalendarActivity">
 
-    </activity>
+        <activity android:name=".PomodoroActivity"
+            android:theme="@style/Theme.Pomodoro">
+        </activity>
+
+        <activity android:name=".CalendarActivity"
+            android:theme="@style/Theme.Calendar">
+        </activity>
+
+        <activity android:name=".Jude"
+            android:theme="@style/Theme.Jude">
+        </activity>
+
+        <activity android:name=".SemesterActivity"
+            android:theme="@style/Theme.Jude">
+        </activity>
+
+        <activity android:name=".SyllabusActivity"
+            android:theme="@style/Theme.Jude">
+        </activity>
+
+        <activity android:name=".TermActivity"
+            android:theme="@style/Theme.Jude">
+        </activity>
+
+        <activity android:name=".TodolistActivity"
+            android:theme="@style/Theme.Todolist">
+        </activity>
+
+
     </application>
-
 </manifest>

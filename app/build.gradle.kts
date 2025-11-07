@@ -56,6 +56,7 @@ dependencies {
     implementation("com.kizitonwose.calendar:compose:2.5.0")
     implementation(libs.androidx.compose.ui.test)
     implementation(libs.androidx.compose.foundation.android)
+    implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))

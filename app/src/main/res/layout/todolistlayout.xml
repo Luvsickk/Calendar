@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFDF6"
+    android:padding="8dp">
+
+    <!-- No tasks -->
+    <TextView
+        android:id="@+id/textViewNoTasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textViewTaskHeader"
+        android:gravity="center"
+        android:text="No tasks for this day!"
+        android:textColor="#008577"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone" />
+
+    <!-- Header -->
+
+    <!-- Calendar Section -->
+    <TextView
+        android:id="@+id/headerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_bg"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="TO DO LIST"
+        android:textColor="#333333"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/calendarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerTitle"
+        android:layout_margin="10dp"
+        android:background="@drawable/card_bg"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e7e6e0"
+            android:focusedMonthDateColor="#f5c0b5"
+            android:unfocusedMonthDateColor="#f5c0b5"
+            android:weekNumberColor="#f5c0b5"
+            android:elevation="10dp"
+            android:translationZ="4dp"/>
+    </LinearLayout>
+
+    <!-- Date Header -->
+    <TextView
+        android:id="@+id/textViewTaskHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarContainer"
+        android:layout_marginHorizontal="10dp"
+        android:text="Tasks for this day:"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        android:padding="4dp" />
+
+    <!-- Remove Completed Button -->
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="20dp"
+        android:backgroundTint="#f5c0b5"
+        android:text="Remove Completed Tasks"
+        android:textColor="#333333"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:elevation="10dp"
+        android:translationZ="4dp"
+        android:paddingHorizontal="20dp" />
+
+    <!-- Task List Container -->
+    <ScrollView
+        android:id="@+id/scrollTasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textViewTaskHeader"
+        android:layout_above="@+id/buttonAdd"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/taskContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp" />
+    </ScrollView>
+
+    <!-- Floating Add Button -->
+    <ImageButton
+        android:id="@+id/buttonAdd"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/fab_bg"
+        android:contentDescription="Add Task"
+        android:elevation="10dp"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="#333333"
+        android:translationZ="4dp" />
+</RelativeLayout>
