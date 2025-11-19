@@ -9,7 +9,7 @@ public class SyllabusActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.jude3);
+        setContentView(R.layout.syllabusdata);
 
         String semester = getIntent().getStringExtra("SEMESTER");
         String term = getIntent().getStringExtra("TERM");

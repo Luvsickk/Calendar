@@ -3,7 +3,9 @@
 
     <style name="Theme.Calendar" parent="android:Theme.Material.Light.NoActionBar" />
     <style name="Theme.Pomodoro" parent="Theme.AppCompat.Light.NoActionBar"/>
-    <style name="Theme.Jude" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="Theme.Syllabus" parent="Theme.AppCompat.Light.NoActionBar"/>
     <style name="Theme.Todolist" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="Theme.Signup" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="Theme.Login" parent="Theme.AppCompat.Light.NoActionBar"/>
 
 </resources>

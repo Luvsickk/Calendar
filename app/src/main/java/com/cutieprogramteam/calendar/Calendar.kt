@@ -3,6 +3,7 @@ package com.cutieprogramteam.calendar
 
 import androidx.compose.material3.MaterialTheme
 import android.os.Bundle
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
@@ -39,7 +40,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.size
 import androidx.compose.ui.platform.ComposeView
+import java.time.Month
 
 
 class CalendarActivity : ComponentActivity() {
@@ -58,7 +61,7 @@ class CalendarActivity : ComponentActivity() {
     }
 }
 @Composable
-fun Day(day: CalendarDay, isSelected: Boolean, onClick: (CalendarDay) -> Unit) {
+fun Day(day: CalendarDay, isSelected: Boolean, eventsForDay: List<Event>?, onClick: (CalendarDay) -> Unit) {
     Box(
         modifier = Modifier
             .background(
@@ -73,7 +76,17 @@ fun Day(day: CalendarDay, isSelected: Boolean, onClick: (CalendarDay) -> Unit) {
 
         contentAlignment = Alignment.Center
     ) {
-        Text(text = day.date.dayOfMonth.toString())
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(text = day.date.dayOfMonth.toString())
+            if (!eventsForDay.isNullOrEmpty()) {
+                Box(
+                    Modifier
+                        .background(Color.Red, shape = CircleShape)
+                        .size(6.dp)
+                        .padding(top = 2.dp)
+                )
+            }
+        }
     }
 }
 
@@ -116,6 +129,8 @@ fun Calendar() {
 
     )
 
+    val eventsByDate = events.groupBy { it.date }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -132,6 +147,7 @@ fun Calendar() {
                     Day(
                         day = day,
                         isSelected = selectedDate.value == day.date,
+                        eventsForDay = eventsByDate[day.date],
                         onClick = {
                             selectedDate.value =
                                 if (selectedDate.value == it.date) null else it.date
@@ -159,6 +175,97 @@ fun Calendar() {
             },
 
             )
+        selectedDate.value?.let { date ->
+            val activities = eventsByDate[date] ?: emptyList()
+            Column {
+                Text("Activities for $date", fontWeight = FontWeight.Bold)
+                activities.forEach { event -> Text("- ${event.description}") }
+            }
+        }
 
     }
 }
+data class Event(val date: LocalDate, val description: String)
+
+val events = listOf(
+    Event(LocalDate.of(2025, Month.AUGUST, 7), "FRESHIES ORIENTATION (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2025, Month.AUGUST, 15), "KILIT ANAY (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2025, Month.AUGUST, 21), "[translate:NINOY AQUINO DAY (HOLIDAY)] S"),
+    Event(LocalDate.of(2025, Month.AUGUST, 25), "[translate:NATIONAL HERO DAY (HOLIDAY)] R"),
+
+    Event(LocalDate.of(2025, Month.SEPTEMBER, 10), "PRELIM EXAM"),
+    Event(LocalDate.of(2025, Month.SEPTEMBER, 11), "PRELIM EXAM"),
+    Event(LocalDate.of(2025, Month.SEPTEMBER, 12), "PRELIM EXAM"),
+
+    Event(LocalDate.of(2025, Month.OCTOBER, 8), "MIDTERM EXAM"),
+    Event(LocalDate.of(2025, Month.OCTOBER, 9), "MIDTERM EXAM"),
+    Event(LocalDate.of(2025, Month.OCTOBER, 10), "MIDTERM EXAM"),
+    Event(LocalDate.of(2025, Month.OCTOBER, 16), "ACSO, AKWE, FRESHIES (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2025, Month.OCTOBER, 31), "[translate:ALL SAINT'S DAY (HOLIDAY)] S"),
+
+    Event(LocalDate.of(2025, Month.NOVEMBER, 1), "[translate:ALL SAINT'S DAY (HOLIDAY)] S"),
+    Event(LocalDate.of(2025, Month.NOVEMBER, 5), "[translate:NEGROS DAY (HOLIDAY)]"),
+    Event(LocalDate.of(2025, Month.NOVEMBER, 10), "ENDTERM EXAM"),
+    Event(LocalDate.of(2025, Month.NOVEMBER, 11), "ENDTERM EXAM"),
+    Event(LocalDate.of(2025, Month.NOVEMBER, 12), "ENDTERM EXAM"),
+    Event(LocalDate.of(2025, Month.NOVEMBER, 20), "CULTURE AND ART FEST (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2025, Month.NOVEMBER, 21), "CULTURE AND ART FEST (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2025, Month.NOVEMBER, 25), "START OF 18 DAY CAMPAIGN (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2025, Month.NOVEMBER, 30), "[translate:BONIFACIO DAY (HOLIDAY)] R"),
+
+    Event(LocalDate.of(2025, Month.DECEMBER, 8), "[translate:FEAST IMMACULATE MARY (HOLIDAY)] S"),
+    Event(LocalDate.of(2025, Month.DECEMBER, 12), "END OF 18 DAY CAMPAIGN (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2025, Month.DECEMBER, 16), "YEAR END CELEBRATION (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2025, Month.DECEMBER, 24), "[translate:CHRISTMAS EVE (HOLIDAY)] S"),
+    Event(LocalDate.of(2025, Month.DECEMBER, 25), "[translate:CHRISTMAS DAY (HOLIDAY)] R"),
+    Event(LocalDate.of(2025, Month.DECEMBER, 30), "[translate:RIZAL DAY (HOLIDAY)] R"),
+    Event(LocalDate.of(2025, Month.DECEMBER, 31), "[translate:NEW YEAR (HOLIDAY)] S"),
+
+    Event(LocalDate.of(2026, Month.JANUARY, 1), "[translate:NEW YEAR (HOLIDAY)] R"),
+    Event(LocalDate.of(2026, Month.JANUARY, 7), "PRELIM EXAM"),
+    Event(LocalDate.of(2026, Month.JANUARY, 8), "PRELIM EXAM"),
+    Event(LocalDate.of(2026, Month.JANUARY, 9), "PRELIM EXAM"),
+
+    Event(LocalDate.of(2026, Month.FEBRUARY, 4), "MIDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.FEBRUARY, 5), "MIDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.FEBRUARY, 6), "MIDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.FEBRUARY, 11), "[translate:TALISAY CHARTER DAY (HOLIDAY)]"),
+    Event(LocalDate.of(2026, Month.FEBRUARY, 13), "PRE VALENTINE CELEBRATION (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2026, Month.FEBRUARY, 17), "[translate:CHINESE NEW YEAR (HOLIDAY)] S"),
+    Event(LocalDate.of(2026, Month.FEBRUARY, 25), "[translate:PEOPLE POWER (HOLIDAY)] S"),
+
+    Event(LocalDate.of(2026, Month.MARCH, 4), "TECHNO FEST (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2026, Month.MARCH, 5), "UNIVERSITY DAYS (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2026, Month.MARCH, 6), "UNIVERSITY DAYS (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2026, Month.MARCH, 9), "ENDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.MARCH, 10), "ENDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.MARCH, 11), "ENDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.MARCH, 23), "INTRAMS (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2026, Month.MARCH, 24), "INTRAMS (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2026, Month.MARCH, 25), "INTRAMS (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2026, Month.MARCH, 26), "INTRAMS (STUDENT ACTIVITY)"),
+    Event(LocalDate.of(2026, Month.MARCH, 27), "INTRAMS (STUDENT ACTIVITY)"),
+
+    Event(LocalDate.of(2026, Month.APRIL, 2), "[translate:HOLY WEEK (HOLIDAY)]"),
+    Event(LocalDate.of(2026, Month.APRIL, 3), "[translate:HOLY WEEK (HOLIDAY)]"),
+    Event(LocalDate.of(2026, Month.APRIL, 4), "[translate:HOLY WEEK (HOLIDAY)]"),
+    Event(LocalDate.of(2026, Month.APRIL, 5), "[translate:HOLY WEEK (HOLIDAY)]"),
+    Event(LocalDate.of(2026, Month.APRIL, 9), "[translate:ARAW NG KAGITINGAN (HOLIDAY)] R"),
+
+    Event(LocalDate.of(2026, Month.APRIL, 22), "PRELIM EXAM"),
+    Event(LocalDate.of(2026, Month.APRIL, 23), "PRELIM EXAM"),
+    Event(LocalDate.of(2026, Month.APRIL, 24), "PRELIM EXAM"),
+
+    Event(LocalDate.of(2026, Month.MAY, 1), "[translate:LABOR DAY (HOLIDAY)]"),
+    Event(LocalDate.of(2026, Month.MAY, 20), "MIDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.MAY, 21), "MIDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.MAY, 22), "MIDTERM EXAM"),
+
+    Event(LocalDate.of(2026, Month.JUNE, 12), "[translate:INDEPENDENCE DAY (HOLIDAY)] R"),
+    Event(LocalDate.of(2026, Month.JUNE, 22), "ENDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.JUNE, 23), "ENDTERM EXAM"),
+    Event(LocalDate.of(2026, Month.JUNE, 24), "ENDTERM EXAM"),
+
+    Event(LocalDate.of(2026, Month.AUGUST, 21), "[translate:NINOY AQUINO (HOLIDAY)]"),
+    Event(LocalDate.of(2026, Month.AUGUST, 31), "[translate:NATIONAL HERO DAY (HOLIDAY)]")
+)

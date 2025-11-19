@@ -12,7 +12,7 @@ public class SemesterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.jude2);
+        setContentView(R.layout.termview);
 
         semester = getIntent().getStringExtra("SEMESTER");
 

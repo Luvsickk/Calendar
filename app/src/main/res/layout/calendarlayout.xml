@@ -5,36 +5,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/mainbg"
     android:scrollbarAlwaysDrawVerticalTrack="true">
 
-
-    <ActionMenuView
-        android:id="@+id/actionMenuView"
+    <LinearLayout
+        android:id="@+id/calendarTitle"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_gravity="top"
-        android:background="@color/color1"
-        android:padding="10dp"
-        tools:ignore="MissingConstraints">
+        android:layout_height="wrap_content"
+        android:padding="8dp">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text1"
-            android:textAlignment="center"
-            android:textColor="@color/color4"
-            android:textSize="35sp">
-
-        </TextView>
-
-    </ActionMenuView>
+            android:background="@drawable/header_bg"
+            android:layout_marginTop="40dp"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Calendar"
+            android:textColor="#333333"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="815dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:layout_constraintTop_toBottomOf="@+id/actionMenuView"
+        app:layout_constraintTop_toBottomOf="@id/calendarTitle"
         tools:ignore="MissingConstraints">
 
         <androidx.compose.ui.platform.ComposeView
@@ -42,9 +41,7 @@
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </androidx.compose.ui.platform.ComposeView>
-
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

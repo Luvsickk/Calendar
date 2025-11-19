@@ -16,8 +16,6 @@ public class PomodoroActivity extends AppCompatActivity {
     private EditText etTask, etWorkTime, etBreakTime;
     private Button btnAddTask, btnSetTimer, btnStartPause, btnClearTasks;
     private ListView listViewTasks;
-    private ProgressBar progressBarTasks;
-
     private ArrayList<String> taskList;
     private ArrayAdapter<String> taskAdapter;
 
@@ -40,7 +38,6 @@ public class PomodoroActivity extends AppCompatActivity {
         tvDate = findViewById(R.id.tvDate);
         tvSelectedTask = findViewById(R.id.tvSelectedTask);
         tvTimer = findViewById(R.id.tvTimer);
-        tvProgress = findViewById(R.id.tvProgress);
         etTask = findViewById(R.id.etTask);
         etWorkTime = findViewById(R.id.etWorkTime);
         etBreakTime = findViewById(R.id.etBreakTime);
@@ -48,7 +45,6 @@ public class PomodoroActivity extends AppCompatActivity {
         btnSetTimer = findViewById(R.id.btnSetTimer);
         btnStartPause = findViewById(R.id.btnStartPause);
         listViewTasks = findViewById(R.id.listViewTasks);
-        progressBarTasks = findViewById(R.id.progressBarTasks);
         btnClearTasks = findViewById(R.id.btnClearTasks);
 
         // 🔹 Added Label for Work/Break indicator
@@ -75,7 +71,6 @@ public class PomodoroActivity extends AppCompatActivity {
                 taskList.add(task);
                 taskAdapter.notifyDataSetChanged();
                 etTask.setText("");
-                updateProgress();
             }
         });
         listViewTasks.setOnItemClickListener((parent, view, position, id) -> {
@@ -129,7 +124,6 @@ public class PomodoroActivity extends AppCompatActivity {
                             taskAdapter.notifyDataSetChanged();
                             selectedTaskIndex = -1;
                             tasksCompleted = 0;
-                            updateProgress();
                             tvSelectedTask.setText("Selected Task: None");
                             tvProgress.setText("Progress: 0%");
                             Toast.makeText(PomodoroActivity.this, "All tasks cleared", Toast.LENGTH_SHORT).show();
@@ -166,7 +160,6 @@ public class PomodoroActivity extends AppCompatActivity {
                     selectedTaskIndex = -1;
                     tvSelectedTask.setText("Selected Task: None");
                     tasksCompleted++;
-                    updateProgress();
 
                     if (breakTimeInMillis > 0) {
                         isOnBreak = true;
@@ -202,22 +195,5 @@ public class PomodoroActivity extends AppCompatActivity {
         int minutes = (int) (timeLeftInMillis / 1000) / 60;
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
         tvTimer.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-    }
-
-    private void updateProgress() {
-        if (taskList.isEmpty()) {
-            progressBarTasks.setProgress(0);
-            tvProgress.setText("Progress: 0%");
-            return;
-        }
-        int totalTasks = taskList.size();
-        int progressPercent = (int) (((double) tasksCompleted / totalTasks) * 100);
-        progressBarTasks.setProgress(progressPercent);
-
-        if (progressPercent >= 100) {
-            tvProgress.setText("Accomplished! 🎉");
-        } else {
-            tvProgress.setText("Progress: " + progressPercent + "%");
-        }
     }
 }

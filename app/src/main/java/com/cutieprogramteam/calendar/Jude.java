@@ -10,7 +10,7 @@ public class Jude extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.jude);
+        setContentView(R.layout.semesterview);
 
         Button btnSem1 = findViewById(R.id.btnSem1);
         Button btnSem2 = findViewById(R.id.btnSem2);

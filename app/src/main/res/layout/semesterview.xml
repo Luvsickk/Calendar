@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbg"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/syllabusTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_bg"
+        android:layout_marginTop="255dp"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Syllabus"
+        android:textColor="#333333"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/sem1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/syllabusTitle"
+        android:elevation="4dp"
+        android:padding="6dp">
+
+        <Button
+            android:id="@+id/btnSem1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1st Semester"
+            android:layout_margin="8dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sem2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sem1"
+        android:elevation="4dp"
+        android:padding="6dp">
+
+        <Button
+            android:id="@+id/btnSem2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2nd Semester"
+            android:layout_margin="8dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sem3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sem2"
+        android:elevation="4dp"
+        android:padding="6dp">
+
+        <Button
+            android:id="@+id/btnSem3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3rd Semester"
+            android:layout_margin="8dp"/>
+    </LinearLayout>
+
+</RelativeLayout>
